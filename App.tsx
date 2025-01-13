@@ -5,37 +5,31 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
 
-import { GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { Center, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { config } from './config/gluestack-ui.config';
+import { Loading } from '@components/Loading/loading';
+import { SignIn } from '@screens/SignIn/signIn';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,
-  })
+  });
 
   return (
-    <GluestackUIProvider>
-      <View style={{
-        flex: 1,
-        backgroundColor: '#202024',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor="transparent"
-          translucent 
+    <GluestackUIProvider config={ config }>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent 
         />
-        {
-          fontsLoaded ?
-          <Text
-            color="white"
-            fontSize={ 40 }>
-              Home
-            </Text> :
-          <View></View>
-        }
-      </View>
+      {
+        fontsLoaded ? (
+          <SignIn></SignIn>
+        ) : (
+          <Loading></Loading>
+        )
+      }
     </GluestackUIProvider>
   );
 }
