@@ -7,7 +7,7 @@ import {
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from './config/gluestack-ui.config';
 
-import { Routes } from '@routes/authRoutes';
+import { Routes } from '@routes/routes';
 import { Loading } from '@components/Loading/loading';
 
 export default function App() {

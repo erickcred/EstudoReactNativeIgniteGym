@@ -6,19 +6,24 @@ import { Center, Heading, Image, Text, VStack, ScrollView } from "@gluestack-ui/
 import Logo from '@assets/logo.svg';
 import BackgroundImg from '@assets/background.png';
 
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignIn() {
-  const navigator = useNavigation();
+  const navigator = useNavigation<AuthNavigatorRoutesProps>();
 
   const [ inputEmail, setInputEmail ] = useState('');
   const [ inputSenha, setInputSenha ] = useState('');
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
+  function handleLogin() {
+    
+  }
+
   function handleNewAccount() {
-    navigator.goBack();
+    navigator.navigate('signUp');
   }
 
   return (
@@ -65,7 +70,7 @@ export function SignIn() {
 
             <Button
               title="Acessar"
-              onPress={ () => console.log('submit', inputEmail, inputSenha) }
+              onPress={ handleLogin }
             ></Button>
           </Center>
 
