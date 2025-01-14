@@ -8,8 +8,8 @@ import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignIn() {
-  const [ email, setEmail ] = useState('');
-  const [ senha, setSenha ] = useState('');
+  const [ inputEmail, setInputEmail ] = useState('');
+  const [ inputSenha, setInputSenha ] = useState('');
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
@@ -41,23 +41,23 @@ export function SignIn() {
               placeholder="E-mail"
               keyboardType="email-address"
               autoCapitalize="none"
-              onChangeText={ setEmail }
-              onSubmitEditing={ () => console.log('submit', email) }
-              onKeyPress={ () => console.log('keypress', email) }
-              value={ email }
+              onChangeText={ setInputEmail }
+              onSubmitEditing={ () => console.log('submit', inputEmail) }
+              onKeyPress={ () => console.log('keypress', inputEmail) }
+              value={ inputEmail }
             />
             <Input
               placeholder="Senha"
               secureTextEntry={ true }
-              onChangeText={ setSenha }
-              onSubmitEditing={ () => console.log('submit', senha) }
-              onKeyPress={ () => console.log('keypress', senha) }
-              value={ senha }
+              onChangeText={ setInputSenha }
+              onSubmitEditing={ () => console.log('submit', inputSenha) }
+              onKeyPress={ () => console.log('keypress', inputSenha) }
+              value={ inputSenha }
             />
 
             <Button
               title="Acessar"
-              onPress={ () => console.log('submit', email, senha) }
+              onPress={ () => console.log('submit', inputEmail, inputSenha) }
             ></Button>
           </Center>
 
