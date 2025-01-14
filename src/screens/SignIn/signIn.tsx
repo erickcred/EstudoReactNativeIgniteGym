@@ -75,7 +75,7 @@ export function SignIn() {
             <Button
               variant="outline"
               title="Criar Conta"
-              onPress={ () => console.log('submit', email, senha) }
+              onPress={ () => console.log('submit', inputEmail, inputSenha) }
             ></Button>
           </Center>
         </VStack>
