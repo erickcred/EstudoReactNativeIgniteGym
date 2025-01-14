@@ -5,10 +5,10 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
 
-import { Center, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from './config/gluestack-ui.config';
 import { Loading } from '@components/Loading/loading';
-import { SignIn } from '@screens/SignIn/signIn';
+import { SignUp } from '@screens/SignUp/signUp';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
@@ -25,7 +25,7 @@ export default function App() {
         />
       {
         fontsLoaded ? (
-          <SignIn></SignIn>
+          <SignUp></SignUp>
         ) : (
           <Loading></Loading>
         )
