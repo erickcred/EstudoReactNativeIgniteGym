@@ -6,16 +6,23 @@ import { Center, Heading, Image, Text, VStack, ScrollView } from "@gluestack-ui/
 import Logo from '@assets/logo.svg';
 import BackgroundImg from '@assets/background.png';
 
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
+
 import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignUp() {
-  const navigation = useNavigation();
+  const navigator = useNavigation<AuthNavigatorRoutesProps>();
+
   const [ inputNome, setInputNome ] = useState('');
   const [ inputEmail, setInputEmail ] = useState('');
   const [ inputSenha, setInputSenha ] = useState('');
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
+
+  function handleGoBackLogin() {
+    navigator.navigate('signIn');
+  }
 
   return (
     <ScrollView
@@ -81,7 +88,7 @@ export function SignUp() {
             variant="outline"
             title="Voltar para o login"
             mt="$12"
-            onPress={ () => navigation.navigate('signIn') }
+            onPress={ handleGoBackLogin }
           ></Button>
         </VStack>
       </VStack>

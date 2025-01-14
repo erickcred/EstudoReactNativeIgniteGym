@@ -10,11 +10,16 @@ import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignIn() {
-  const natigation = useNavigation();
+  const navigator = useNavigation();
+
   const [ inputEmail, setInputEmail ] = useState('');
   const [ inputSenha, setInputSenha ] = useState('');
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
+
+  function handleNewAccount() {
+    navigator.goBack();
+  }
 
   return (
     <ScrollView
@@ -80,7 +85,7 @@ export function SignIn() {
             <Button
               variant="outline"
               title="Criar Conta"
-              onPress={ () => natigation.navigate('signUp') }
+              onPress={ handleNewAccount }
             ></Button>
           </Center>
         </VStack>
