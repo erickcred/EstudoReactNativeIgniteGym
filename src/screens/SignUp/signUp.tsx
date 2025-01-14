@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { Center, Heading, Image, Text, VStack, ScrollView } from "@gluestack-ui/themed";
 
 import Logo from '@assets/logo.svg';
@@ -8,6 +10,7 @@ import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignUp() {
+  const navigation = useNavigation();
   const [ inputNome, setInputNome ] = useState('');
   const [ inputEmail, setInputEmail ] = useState('');
   const [ inputSenha, setInputSenha ] = useState('');
@@ -19,7 +22,7 @@ export function SignUp() {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={ false }
     >
-      <VStack flex={ 1 } bg="$gray700">
+      <VStack flex={ 1 }>
         <Image
           source={ BackgroundImg }
           alt="Passoas treinando"
@@ -78,7 +81,7 @@ export function SignUp() {
             variant="outline"
             title="Voltar para o login"
             mt="$12"
-            onPress={ () => console.log('submit', { inputNome, inputEmail, inputSenha }) }
+            onPress={ () => navigation.navigate('signIn') }
           ></Button>
         </VStack>
       </VStack>

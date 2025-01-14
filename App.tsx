@@ -1,14 +1,14 @@
-import { StatusBar, View } from 'react-native';
+import { StatusBar } from 'react-native';
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
-
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from './config/gluestack-ui.config';
+
+import { Routes } from '@routes/authRoutes';
 import { Loading } from '@components/Loading/loading';
-import { SignUp } from '@screens/SignUp/signUp';
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
@@ -25,9 +25,9 @@ export default function App() {
         />
       {
         fontsLoaded ? (
-          <SignUp></SignUp>
+          <Routes />
         ) : (
-          <Loading></Loading>
+          <Loading />
         )
       }
     </GluestackUIProvider>

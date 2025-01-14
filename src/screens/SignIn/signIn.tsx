@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { Center, Heading, Image, Text, VStack, ScrollView } from "@gluestack-ui/themed";
 
 import Logo from '@assets/logo.svg';
@@ -8,6 +10,7 @@ import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignIn() {
+  const natigation = useNavigation();
   const [ inputEmail, setInputEmail ] = useState('');
   const [ inputSenha, setInputSenha ] = useState('');
 
@@ -18,7 +21,7 @@ export function SignIn() {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={ false }
     >
-      <VStack flex={ 1 } bg="$gray700">
+      <VStack flex={ 1 }>
         <Image
           source={ BackgroundImg }
           alt="Passoas treinando"
@@ -71,11 +74,13 @@ export function SignIn() {
               fontFamily="$body"
               fontSize="$sm"
               mb="$3"
-            >Ainda não tem acesso?</Text>
+            >
+              Ainda não tem acesso?
+            </Text>
             <Button
               variant="outline"
               title="Criar Conta"
-              onPress={ () => console.log('submit', inputEmail, inputSenha) }
+              onPress={ () => natigation.navigate('signUp') }
             ></Button>
           </Center>
         </VStack>
