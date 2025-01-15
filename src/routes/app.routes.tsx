@@ -1,10 +1,10 @@
 import { createBottomTabNavigator, BottomTabNavigationProp, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { gluestackUIConfig } from '../../config/gluestack-ui.config';
 
-import { Home } from '@screens/Internal/Home/home';
-import { Exercise } from '@screens/Internal/Exercise/exercise';
-import { Profile } from '@screens/Internal/Profile/profile';
-import { History } from '@screens/Internal/History/history';
+import { Home } from '@screens/internal/Home/home';
+import { Exercise } from '@screens/internal/Exercise/exercise';
+import { Profile } from '@screens/internal/Profile/profile';
+import { History } from '@screens/internal/History/history';
 
 import HomeSvg from '@assets/home.svg';
 import HistorySvg from '@assets/history.svg';
