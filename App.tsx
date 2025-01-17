@@ -8,6 +8,7 @@ import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from './config/gluestack-ui.config';
 
 import { Routes } from '@routes/routes';
+import { AuthRoutes } from "@routes/auth.routes"
 import { Loading } from '@components/Loading/loading';
 
 export default function App() {
