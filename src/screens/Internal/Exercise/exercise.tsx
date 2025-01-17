@@ -1,11 +1,10 @@
-import { Header } from '@components/internal/Header/header';
-import { Center, Text } from '@gluestack-ui/themed';
+import { ScreenHeader } from '@components/ScreenHeader/screenHeader';
+import { VStack } from '@gluestack-ui/themed';
 
 export function Exercise() {
   return (
-    <Center flex={ 1 }>
-      <Header />
-      <Text color="$white">Exercise</Text>
-    </Center>
+    <VStack flex={ 1 }>
+      <ScreenHeader title="Exercício" />
+    </VStack>
   )
 }

@@ -1,6 +1,6 @@
 import { ExerciseCard } from '@components/ExerciseCard/exerciseCard';
 import { Group } from '@components/Group/group';
-import { Header } from '@components/internal/Header/header';
+import { HomeHeader } from '@components/internal/HomeHeader/homeHeader';
 import { Heading, HStack, Text, VStack } from '@gluestack-ui/themed';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
@@ -14,7 +14,7 @@ export function Home() {
     'Perna',
     'Peito'
   ]);
-  const [ groupSelected, setGroupSelected ] = useState<string[]>();
+  const [ groupSelected, setGroupSelected ] = useState<string>();
   const [ exercises, setExercises ] = useState<string[]>([
     'Puxada frontal', 
     'Remada curvada',
@@ -27,7 +27,7 @@ export function Home() {
   
   return (
     <VStack flex={ 1 }>
-      <Header />
+      <HomeHeader />
       
       <FlatList
         data={ groups }
@@ -39,7 +39,7 @@ export function Home() {
         renderItem={({ item }) => (
           <Group
             name={ item }
-            isActive={ groupSelected.toLowerCase() === item.toLowerCase() }
+            isActive={ groupSelected?.toLowerCase() === item.toLowerCase() }
             onPress={ () => setGroupSelected(item) }
           />
         )}
