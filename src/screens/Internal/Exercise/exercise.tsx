@@ -1,4 +1,4 @@
-import { ScreenHeader } from '@components/ScreenHeader/screenHeader';
+import { ScreenHeader } from '@components/internal/ScreenHeader/screenHeader';
 import { VStack } from '@gluestack-ui/themed';
 
 export function Exercise() {

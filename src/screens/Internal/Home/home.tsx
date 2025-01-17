@@ -1,5 +1,5 @@
-import { ExerciseCard } from '@components/ExerciseCard/exerciseCard';
-import { Group } from '@components/Group/group';
+import { ExerciseCard } from '@components/internal/ExerciseCard/exerciseCard';
+import { Group } from '@components/internal/Group/group';
 import { HomeHeader } from '@components/internal/HomeHeader/homeHeader';
 import { Heading, HStack, Text, VStack } from '@gluestack-ui/themed';
 import { useState } from 'react';

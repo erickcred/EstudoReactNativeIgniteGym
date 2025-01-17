@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { SectionList } from 'react-native';
 import { Text, VStack } from '@gluestack-ui/themed';
 
-import { HistoryCard } from '@components/HistoryCard/historyCard';
-import { ScreenHeader } from '@components/ScreenHeader/screenHeader';
+import { HistoryCard } from '@components/internal/HistoryCard/historyCard';
+import { ScreenHeader } from '@components/internal/ScreenHeader/screenHeader';
 
 type ListProps = {
   title: string;
