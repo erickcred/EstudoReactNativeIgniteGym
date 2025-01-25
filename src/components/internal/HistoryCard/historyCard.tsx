@@ -14,12 +14,14 @@ export function HistoryCard() {
     >
       <VStack
         mr="$5"
+        flexShrink={ 1 }
       >
         <Heading
           color="$white"
           fontFamily="$heading"
           fontSize="$md"
           textTransform="capitalize"
+          numberOfLines={ 2 }
         >
           Costas
         </Heading>
