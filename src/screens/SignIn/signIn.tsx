@@ -11,7 +11,7 @@ import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignIn() {
-  const navigator = useNavigation<AuthNavigatorRoutesProps>();
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   const [ inputEmail, setInputEmail ] = useState('');
   const [ inputSenha, setInputSenha ] = useState('');
@@ -23,7 +23,7 @@ export function SignIn() {
   }
 
   function handleNewAccount() {
-    navigator.navigate('signUp');
+    navigation.navigate('signUp');
   }
 
   return (

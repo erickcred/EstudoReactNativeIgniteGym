@@ -12,7 +12,7 @@ import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 
 export function SignUp() {
-  const navigator = useNavigation<AuthNavigatorRoutesProps>();
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   const [ inputNome, setInputNome ] = useState('');
   const [ inputEmail, setInputEmail ] = useState('');
@@ -21,7 +21,7 @@ export function SignUp() {
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
   function handleGoBackLogin() {
-    navigator.navigate('signIn');
+    navigation.navigate('signIn');
   }
 
   return (
