@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { Center, Heading, Image, Text, VStack, ScrollView } from "@gluestack-ui/themed";
 
@@ -20,9 +22,19 @@ type FormDataProps = {
   confirmarSenha: string;
 }
 
+const signUpSchema = yup.object({
+  nome: yup.string().required('Informe o Nome!'),
+  email: yup.string().required('Informe o E-mail!').email('E-mail inválido!'),
+  senha: yup.string().required('Informe a Senha!').min(6, 'A Senha deve ter pelo menos 6 dígitos!'),
+  confirmarSenha: yup.string().required('Confirmação a Senha!')
+    .oneOf([yup.ref("senha"), ""], "Senha e Confirmação confere!")
+});
+
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
-  const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>();
+  const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
+    resolver: yupResolver(signUpSchema)
+  });
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
@@ -66,9 +78,6 @@ export function SignUp() {
             <Controller
               control={ control }
               name="nome"
-              rules={{
-                required: "Informe o nome!",
-              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="Nome"
@@ -84,13 +93,6 @@ export function SignUp() {
             <Controller
               control={ control }
               name="email"
-              rules={{
-                required: "Informe o E-mail!",
-                pattern: {
-                  value: /^[A-Z0-9.%_+-]+@[A-Z0-9.-]+[A-Z]{2,}$/i,
-                  message: "Formato do E-mail invalido!"
-                }
-              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="E-mail"
@@ -107,9 +109,6 @@ export function SignUp() {
             <Controller
               control={ control }
               name="senha"
-              rules={{
-                required: "Informe a sehna!"
-              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="Senha"
@@ -124,9 +123,6 @@ export function SignUp() {
             <Controller
               control={ control }
               name="confirmarSenha"
-              rules={{
-                required: "Informe a confirmação da senha!"
-              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="Confirmar Senha"
