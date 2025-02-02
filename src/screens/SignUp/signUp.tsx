@@ -10,18 +10,29 @@ import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
 
 import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
+import { Controller, useForm } from "react-hook-form";
+
+
+type FormType = {
+  nome: string;
+  email: string;
+  senha: string;
+  confirmarSenha: string;
+}
 
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
-
-  const [ inputNome, setInputNome ] = useState('');
-  const [ inputEmail, setInputEmail ] = useState('');
-  const [ inputSenha, setInputSenha ] = useState('');
+  const { control, handleSubmit } = useForm<FormType>();
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
+
   function handleGoBackLogin() {
     navigation.navigate('signIn');
+  }
+
+  function handleSignUp(data: FormType) {
+    console.log(data);
   }
 
   return (
@@ -52,35 +63,65 @@ export function SignUp() {
           <Center flex={ 1 } gap="$2">
             <Heading color="$gray100">Crie sua conota</Heading>
 
-            <Input
-              placeholder="Nome"
-              autoCapitalize="none"
-              onChangeText={ setInputNome }
-              onSubmitEditing={ () => console.log('submit', inputNome) }
-              onKeyPress={ () => console.log('keypress', inputNome) }
-              value={ inputNome }
+            <Controller
+              control={ control }
+              name="nome"
+              render={ ({ field: { onChange, value } }) => (
+                <Input
+                  placeholder="Nome"
+                  autoCapitalize="none"
+                  onChangeText={ onChange }
+                  onSubmitEditing={ () => console.log('submit', value) }
+                  value={ value }
+                />
+              )}
             />
-            <Input
-              placeholder="E-mail"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              onChangeText={ setInputEmail }
-              onSubmitEditing={ () => console.log('submit', inputEmail) }
-              onKeyPress={ () => console.log('keypress', inputEmail) }
-              value={ inputEmail }
+            
+            <Controller
+              control={ control }
+              name="email"
+              render={ ({ field: { onChange, value } }) => (
+                <Input
+                  placeholder="E-mail"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  onChangeText={ onChange }
+                  onSubmitEditing={ () => console.log('submit', value) }
+                  value={ value }
+                />
+              )}
             />
-            <Input
-              placeholder="Senha"
-              secureTextEntry={ true }
-              onChangeText={ setInputSenha }
-              onSubmitEditing={ () => console.log('submit', inputSenha) }
-              onKeyPress={ () => console.log('keypress', inputSenha) }
-              value={ inputSenha }
+            <Controller
+              control={ control }
+              name="senha"
+              render={ ({ field: { onChange, value } }) => (
+                <Input
+                  placeholder="Senha"
+                  secureTextEntry={ true }
+                  onChangeText={ onChange }
+                  onSubmitEditing={ () => console.log('submit', value) }
+                  value={ value }
+                />
+              )}
+            />
+            <Controller
+              control={ control }
+              name="confirmarSenha"
+              render={ ({ field: { onChange, value } }) => (
+                <Input
+                  placeholder="Confirmar Senha"
+                  secureTextEntry={ true }
+                  onChangeText={ onChange }
+                  value={ value }
+                  onSubmitEditing={ handleSubmit(handleSignUp) }
+                  returnKeyType="send"
+                />
+              )}
             />
 
             <Button
               title="Criar e acessar"
-              onPress={ () => console.log('submit', { inputNome, inputEmail, inputSenha }) }
+              onPress={ handleSubmit(handleSignUp) }
             ></Button>
           </Center>
 
