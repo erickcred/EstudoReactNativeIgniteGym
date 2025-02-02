@@ -13,7 +13,7 @@ import { Button } from "@components/Button/button";
 import { Controller, useForm } from "react-hook-form";
 
 
-type FormType = {
+type FormDataProps = {
   nome: string;
   email: string;
   senha: string;
@@ -22,7 +22,7 @@ type FormType = {
 
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
-  const { control, handleSubmit } = useForm<FormType>();
+  const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>();
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
@@ -31,7 +31,7 @@ export function SignUp() {
     navigation.navigate('signIn');
   }
 
-  function handleSignUp(data: FormType) {
+  function handleSignUp(data: FormDataProps) {
     console.log(data);
   }
 
@@ -66,6 +66,9 @@ export function SignUp() {
             <Controller
               control={ control }
               name="nome"
+              rules={{
+                required: "Informe o nome!",
+              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="Nome"
@@ -73,6 +76,7 @@ export function SignUp() {
                   onChangeText={ onChange }
                   onSubmitEditing={ () => console.log('submit', value) }
                   value={ value }
+                  errorMessage={ errors.nome?.message }
                 />
               )}
             />
@@ -80,6 +84,13 @@ export function SignUp() {
             <Controller
               control={ control }
               name="email"
+              rules={{
+                required: "Informe o E-mail!",
+                pattern: {
+                  value: /^[A-Z0-9.%_+-]+@[A-Z0-9.-]+[A-Z]{2,}$/i,
+                  message: "Formato do E-mail invalido!"
+                }
+              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="E-mail"
@@ -88,12 +99,17 @@ export function SignUp() {
                   onChangeText={ onChange }
                   onSubmitEditing={ () => console.log('submit', value) }
                   value={ value }
+                  errorMessage={ errors.email?.message }
                 />
               )}
             />
+
             <Controller
               control={ control }
               name="senha"
+              rules={{
+                required: "Informe a sehna!"
+              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="Senha"
@@ -101,12 +117,16 @@ export function SignUp() {
                   onChangeText={ onChange }
                   onSubmitEditing={ () => console.log('submit', value) }
                   value={ value }
+                  errorMessage={ errors.senha?.message }
                 />
               )}
             />
             <Controller
               control={ control }
               name="confirmarSenha"
+              rules={{
+                required: "Informe a confirmação da senha!"
+              }}
               render={ ({ field: { onChange, value } }) => (
                 <Input
                   placeholder="Confirmar Senha"
@@ -115,6 +135,7 @@ export function SignUp() {
                   value={ value }
                   onSubmitEditing={ handleSubmit(handleSignUp) }
                   returnKeyType="send"
+                  errorMessage={ errors.confirmarSenha?.message }
                 />
               )}
             />
