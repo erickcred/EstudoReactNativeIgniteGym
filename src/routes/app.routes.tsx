@@ -1,26 +1,26 @@
 import { createBottomTabNavigator, BottomTabNavigationProp, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { gluestackUIConfig } from '../../config/gluestack-ui.config';
 
-import { Home } from '@screens/internal/Home/home';
-import { Exercise } from '@screens/internal/Exercise/exercise';
-import { Profile } from '@screens/internal/Profile/profile';
-import { History } from '@screens/internal/History/history';
+import { Home } from '@screens/Internal/Home/home';
+import { Exercise } from '@screens/Internal/Exercise/exercise';
+import { Profile } from '@screens/Internal/Profile/profile';
+import { History } from '@screens/Internal/History/history';
 
 import HomeSvg from '@assets/home.svg';
 import HistorySvg from '@assets/history.svg';
 import ProfileSvg from '@assets/profile.svg';
 import { Platform } from 'react-native';
 
-type AppRoutes = {
+type AppRoutesType = {
   home: undefined;
   profile: undefined;
   exercise: undefined;
   history: undefined;
 }
 
-export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
+export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutesType>;
 
-const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
+const { Navigator, Screen } = createBottomTabNavigator<AppRoutesType>();
 
 export function AppRoutes() {
   const { tokens } = gluestackUIConfig;
