@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { Center, Heading, Image, Text, VStack, ScrollView } from "@gluestack-ui/themed";
+import { Center, Heading, Image, Text, VStack, ScrollView, useToast } from "@gluestack-ui/themed";
 
 import Logo from '@assets/logo.svg';
 import BackgroundImg from '@assets/background.png';
@@ -13,6 +13,11 @@ import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
 import { Input } from "@components/Input/input";
 import { Button } from "@components/Button/button";
 import { Controller, useForm } from "react-hook-form";
+
+import { ToastMessage } from "@components/ToastMessage/toastMessage";
+import axios from "axios";
+import { api } from "@services/api";
+import { Alert } from "react-native";
 
 
 type FormDataProps = {
@@ -36,15 +41,25 @@ export function SignUp() {
     resolver: yupResolver(signUpSchema)
   });
 
+  const toast = useToast();
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
-
 
   function handleGoBackLogin() {
     navigation.navigate('signIn');
   }
 
-  function handleSignUp(data: FormDataProps) {
-    console.log(data);
+  async function handleSignUp({ nome, email, senha }: FormDataProps) {
+    try {
+      const response = await api.post('/users', {
+        name: nome,
+        email,
+        password: senha
+      });
+      console.log(response);
+    } catch (error) {
+      
+    }
+    
   }
 
   return (

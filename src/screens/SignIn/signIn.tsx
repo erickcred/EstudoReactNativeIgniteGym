@@ -18,8 +18,17 @@ export function SignIn() {
 
   const [ isLoadingStage, setIsLoadingStage ] = useState(false);
 
-  function handleLogin() {
-    
+  async function handleLogin() {
+    await fetch('http://192.168.1.101:3333/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: inputEmail,
+        password: inputSenha
+      })
+    });
   }
 
   function handleNewAccount() {
